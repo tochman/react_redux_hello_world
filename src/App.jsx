@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container, Header} from 'semantic-ui-react'
 
 class App extends Component {
   state = {
@@ -6,9 +7,9 @@ class App extends Component {
   }
   render() {
     return (
-      <>
-        <h1>{this.state.greeting}</h1>
-      </>
+      <Container>
+        <Header as="h1">{this.state.greeting}</Header>
+      </Container>
     );
   }
 }
