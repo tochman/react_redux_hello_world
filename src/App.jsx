@@ -1,17 +1,32 @@
-import React, { Component } from 'react';
-import { Container, Header} from 'semantic-ui-react'
+import React from 'react';
+import { Container, Header, Button, Input } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
-class App extends Component {
-  state = {
-    greeting: 'Hello World from component state'
+
+const App = ({ greeting, dispatch }) => {
+  const changeGreeting = () => {
+    dispatch({ type: 'CHANGE_GREETING' })
   }
-  render() {
-    return (
-      <Container>
-        <Header as="h1">{this.state.greeting}</Header>
-      </Container>
-    );
+
+  return (
+    <Container>
+      <Header as="h1">{greeting}</Header>
+      <Input
+        onBlur={event => dispatch({ type: 'PROPOSE_GREETING', payload: event.target.value })}
+        placeholder='New greeting'
+      />
+      <Button
+        onClick={() => changeGreeting()}
+      >Change me</Button>
+    </Container>
+  )
+}
+
+
+const mapStateToProps = (state) => {
+  return {
+    greeting: state.greetings.greeting
   }
 }
 
-export default App;
+export default connect(mapStateToProps)(App)
