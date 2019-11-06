@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Header, Button, Input } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import fetchEmployees from './state/actions/employeesActions'
 
 
-const App = ({ greeting, dispatch }) => {
+const App = ({ greeting, dispatch, fetchEmployees }) => {
   
+  useEffect(() => {
+    fetchEmployees()
+  }, [])
 
   const changeGreeting = () => {
     dispatch({ type: 'CHANGE_GREETING' })
@@ -32,10 +35,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchE: dispatch(fetchEmployees())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, {fetchEmployees})(App)
