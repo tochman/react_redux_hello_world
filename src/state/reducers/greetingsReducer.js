@@ -5,7 +5,8 @@ const greetingsReducer = (state = initialState, action) => {
     case 'CHANGE_GREETING':
       return {
         ...state,
-        greeting: state.proposedGreeting
+        greeting: state.proposedGreeting,
+        proposedGreeting: ''
       }
     case 'PROPOSE_GREETING':
       return {
@@ -15,7 +16,6 @@ const greetingsReducer = (state = initialState, action) => {
     default:
       return state
   }
-
 }
 
 
