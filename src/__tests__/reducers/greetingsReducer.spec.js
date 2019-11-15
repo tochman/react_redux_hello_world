@@ -26,16 +26,17 @@ describe('greetingsReducer', () => {
       proposedGreeting: 'Tjena tjena'
     }
     state = store.getState().greetings
-    expect(greetingsReducer(state, action))
+    expect(greetingsReducer(undefined, action))
       .toEqual(expectedState)
   });
 
-  it('changes greeting and purges proposedGreeting', async () => {
+  it('changes greeting and purges proposedGreeting',  () => {
     store.dispatch({type: 'PROPOSE_GREETING', payload: "Hej på dig!"})
     const expectedState = {
       greeting: 'Hej på dig!',
       proposedGreeting: ''
     }
+    console.table(store.getState())
     state = store.getState().greetings
     expect(
       greetingsReducer(state, { type: 'CHANGE_GREETING' })
